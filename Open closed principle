@@ -1,0 +1,52 @@
+#include <iostream>
+
+// Абстрактний клас для геометричних фігур
+class Shape {
+public:
+    virtual double area() const = 0;
+};
+
+// Підклас для кола
+class Circle : public Shape {
+public:
+    Circle(double radius) : radius(radius) {}
+
+    double area() const override {
+        return 3.14 * radius * radius;
+    }
+
+private:
+    double radius;
+};
+
+// Підклас для прямокутника
+class Rectangle : public Shape {
+public:
+    Rectangle(double width, double height) : width(width), height(height) {}
+
+    double area() const override {
+        return width * height;
+    }
+
+private:
+    double width;
+    double height;
+};
+
+// Функція для обчислення площі будь-якої геометричної фігури
+double calculateArea(const Shape& shape) {
+    return shape.area();
+}
+
+int main() {
+    Circle circle(5.0);
+    Rectangle rectangle(4.0, 6.0);
+
+    // Вивід площі кола
+    std::cout << "Circle Area: " << calculateArea(circle) << std::endl;
+
+    // Вивід площі прямокутника
+    std::cout << "Rectangle Area: " << calculateArea(rectangle) << std::endl;
+
+    return 0;
+}
